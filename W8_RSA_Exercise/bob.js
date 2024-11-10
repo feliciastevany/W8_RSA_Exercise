@@ -1,0 +1,63 @@
+const crypto = require('crypto');
+
+// Load Alice's private key and Bob's public key
+const bobPrivateKeyPem = `-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCw+qvvNiCTFxnp
+awCQ4SC9SBfk07bYg7NlgN9jVbyqT/DKF2SEeCtRYaD/trJe5/9RjvjEeYyEIl8k
+k4rZeKWhQfQJlqLw4eVaIYB0wgHqPzG36q92lGRPZwLsZL24zTbDd7QLKuV32+Jo
+IBuNK6JkXXgkfOdnjcbl2gdV4Cb6KmW6AIGV/iSGcTB/ZNAKZJ63w6SkdaDVINyo
+HMYRUh0kp5aigMz/+IqZFbLobOmpeUDj5ONARGDgfBEjn1OnvdCzDaK7J2U7l7U3
+SR0sD2Q7sizunmwBkZkN8IH+LRVUpDuWcf6I2spIAbz5oSpnRkijBgcy2jTsWBq2
+SrGf8UyTAgMBAAECggEAHI6mVbgnM3Tj0n1Ynwgkr0ZFzL+43mEJ/pP39+BqzBSQ
+Jxv1NUbqvnwBbaG+UIAg+7kVPSbb3KprLcy89/B20XmB9lYfPr1Es/F5990iT/kY
+fbPZ0kmJkiJuH1T2JC7A6nOTUsX+NwP9GY4sw+/JiWZnr4OUF2qSMJ6o1luQDoeq
+JAwYYadO+GyYNCSbkKHmLRt4U+z9+3dJmGiLXqupXzDAjYAea0ALdTRZS+aBMzSE
+QcI+XwJJXcSCB3cfz0j1s1X2FCpaSDQzq7Bwe03Xj2c3ikskd6KQj0dIfOj7XT0S
+q1VVOJJFbwAmmPmTWAZchisXaZw/vRIwebpoBnaeCQKBgQDY43R6oJ/wPMpYLsKa
+ZMIVr244efTDJCuM2i+2TG2vmafJuMBLfYP9T+npzHE9PQe8g4LSeX9n3J6bQ7Rd
+jG4aNuXaynCk56MWuo3JXzfOxJk7YS99SFfVJPvI5wjkCupytPXWgxaY2CMYN1tt
++C47yatcTErmNBDAvzJlrqxbhwKBgQDQ5NLyRET9E10Xk7HISyJPWDqQtejj4J4K
+T3vrKU51RNdhFZnGZZBZjBY0P4BIYPnF4HSndyIdvMTk6ueQyUBwGuVLs5oy/Op6
+nRIugHU62T4B552vHDYnT949SSsDNvpl7sZv+JwIJ9xgtQCQ5LQnj9f6gP22P/dt
+bjOJYreBlQKBgC0wnzlZtFli4SokfAmdSs8n4UhFKNlr9OMBJwXNwODgnBQsuWxB
+N7oU54D+Ru3ihHUj1aMzC3fBgQ6Kuc7wDpTJsXS3z2acmN+IeThm7YLYdbDom/N3
+mk1fylJeyPxyxcympb5PS+sGxbEq/5LXLhLo/xpZDxYN7Rur+r0y+tiLAoGABrqI
+LPOUAU7hXcQNIvWAmmuuH0EsykJO9OgQhsei1lYsVd07Qc+9sZS4lmBBQpOVGBGd
+0FMfDzQoZ3NFmD1TTQkgv6p+WgwZhW+PyV2r6QRcYfVS9/QBrox9DR5RO15G/IeP
+bsXkSML370mFRiWHxAp3G4OSKI+w6Z52HIPIg20CgYAUy87xcGM/MswG9mLUVYHC
+V8u3SvPhVDjLPOk2aSZAP7H3T9BYLsMwpsgt9RQ7nbTH8zIM8iFeYaxl8gc06Vsv
+oQHElvY5kg0tzVuQYMKZNY4LcMj/9f5Cy1rQskcXN5wTSzkniheG3CGkZef0mYmB
+/JhnkRvlDxBtIrZzMXHANQ==
+-----END PRIVATE KEY-----`;
+
+const bobPrivateKey = crypto.createPrivateKey(bobPrivateKeyPem);
+
+const alicePublicKeyPem = `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqHSNadR1nI1djVr01Kiy
+8bXyXZp150KQOIkw6GXxQBNAE00usmFpBX5+pu5owx5HHIJlko/DETXdSyCBHP2B
+8VqmYbevxJAWAE92UFAyDpt7mlVWFxFzB1hXMXyyLYZE8zsPRjndYlKzIxyqxrNl
+p3aM8TuRpvKhiCNIQ5nGf3pTu5/JG6tdp9FklTCuZJPJeR3qUANPtkvBS7nzjLoD
+et6+P0Csw8rUsofIgFMHKvPzoASX8x5pGNT2CpXzQt8sBDleLehnhYivwhUBhIe2
+mZAk3EsNlP8w1xBgt9/NtgqFOu7z+eEWN06p8Ons7wCHPwTsTkVDR6DQSjESXWF3
+mQIDAQAB
+-----END PUBLIC KEY-----`;
+
+const alicePublicKey = crypto.createPublicKey(alicePublicKeyPem);
+
+// SIgnature and ciphertext from alice.js (sender)
+const signatureHex = '6757def13b64ea1479191253af5dacb49b3480b3883806d47fb533c7e1c092fd235bdf7be44065aa5bf7d5fb9a518d38869f8dc308ada501c800878dcc4b74e1fa8f76e5dadb85c314fb1c396c3545a1420b5dcccb474c5f23f7a84721b8a3eed20fca63463d99a563b8ec93f8a86b1ee1d5a03853b031ba50c8ecdb52ad12da6f791eb7cc147f5c87d4bbc946619781abb4036b4ef0cd55617c587428f2c61a76983e1cf99e52fb943d5cfb488939c61cb93f91710ce62ca44cc32353d1a452daceafaec6414f950804710e2717b0e0bac1df595ccac358422d689c9acf05b906497b5ae86524fd1b90c42269f963f3b6f7a91c3769e5da4c817b7339e4c332';
+const ciphertextHex = '50867573292b6f759463e211d6a01ed15750bf14ab36095bd6093d1ebbc1dba82b8031185485bf967dea1781a96d6207f6827154a8e903915ce3237e68cd71da9870f63ce7038b28341573e26a811b7e8733a660bac2eb39782103d99b97392ca47b5d8c0c712dd5e598d5e0d0144932f762547d5b980e5c5058af2610f41c718ea97cc867d0d8536d38e93d14e25c629b67f7114ca16332c8073d48b4448e4a41d04e30c98809ce21c67d07e9b7c061e85157433dd9691aac7ff7c0b051defc448a82ae5c61dfa875a1dee1b4e61afcb96471ff5eee6e8150e3db4473e3a779bcca87418bbe69a8f1644e107ee08cfb077cdcce7ea96ac5e02d861131c2a67f';
+const ciphertext = Buffer.from(ciphertextHex, "hex");
+const signature = Buffer.from(signatureHex, "hex");
+
+// Decrypting message
+const recoveredPlaintext = crypto.privateDecrypt(bobPrivateKey, ciphertext);
+const message = recoveredPlaintext.toString("utf8");
+
+// Bob Verifying signature
+const data = Buffer.from(message);
+const isVerified = crypto.verify("sha256", data, alicePublicKey, signature);
+
+// Results
+console.log("Signature Verification:", isVerified);
+console.log("Message:", message);
